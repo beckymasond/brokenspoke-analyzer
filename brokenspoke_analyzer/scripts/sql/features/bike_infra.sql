@@ -13,8 +13,6 @@ SET
     ft_bike_infra = CASE
 
         -- both
-        WHEN osm."cycleway:both" = 'shared_lane'
-            THEN 'sharrow'
         WHEN osm."cycleway:both" = 'buffered_lane'
             THEN 'buffered_lane'
         WHEN
@@ -39,8 +37,6 @@ SET
             -- one-way=ft
         WHEN one_way_car = 'ft'
             THEN CASE
-                WHEN osm."cycleway:left" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN
                     osm."cycleway:left" = 'lane'
                     AND osm."cycleway:buffer" IN (
@@ -59,10 +55,6 @@ SET
                     THEN 'track'
 
                 -- stuff from two-way that also applies to one-way=ft
-                WHEN osm.cycleway = 'shared_lane'
-                    THEN 'sharrow'
-                WHEN osm."cycleway:right" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN osm.cycleway = 'buffered_lane'
                     THEN 'buffered_lane'
                 WHEN osm."cycleway:right" = 'buffered_lane'
@@ -139,10 +131,6 @@ SET
             -- two-way
         WHEN one_way_car IS NULL
             THEN CASE
-                WHEN osm.cycleway = 'shared_lane'
-                    THEN 'sharrow'
-                WHEN osm."cycleway:right" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN osm.cycleway = 'buffered_lane'
                     THEN 'buffered_lane'
                 WHEN osm."cycleway:right" = 'buffered_lane'
@@ -179,8 +167,6 @@ SET
     tf_bike_infra = CASE
 
         -- both
-        WHEN osm."cycleway:both" = 'shared_lane'
-            THEN 'sharrow'
         WHEN osm."cycleway:both" = 'buffered_lane'
             THEN 'buffered_lane'
         WHEN
@@ -205,8 +191,6 @@ SET
             -- one-way=tf
         WHEN one_way_car = 'tf'
             THEN CASE
-                WHEN osm."cycleway:right" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN
                     osm."cycleway:right" = 'lane'
                     AND osm."cycleway:buffer" IN (
@@ -225,10 +209,6 @@ SET
                     THEN 'track'
 
                 -- stuff from two-way that also applies to one-way=tf
-                WHEN osm.cycleway = 'shared_lane'
-                    THEN 'sharrow'
-                WHEN osm."cycleway:left" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN osm.cycleway = 'buffered_lane'
                     THEN 'buffered_lane'
                 WHEN osm."cycleway:left" = 'buffered_lane'
@@ -305,10 +285,6 @@ SET
             -- two-way
         WHEN one_way_car IS NULL
             THEN CASE
-                WHEN osm.cycleway = 'shared_lane'
-                    THEN 'sharrow'
-                WHEN osm."cycleway:left" = 'shared_lane'
-                    THEN 'sharrow'
                 WHEN osm.cycleway = 'buffered_lane'
                     THEN 'buffered_lane'
                 WHEN osm."cycleway:left" = 'buffered_lane'
